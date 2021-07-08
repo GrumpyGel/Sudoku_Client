@@ -198,4 +198,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-shield]: https://img.shields.io/github/license/GrumpyGel/Sudoku_Client.svg?style=for-the-badge
 [license-url]: https://github.com/GrumpyGel/Sudoku_Client/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/GrumpyGel
+[linkedin-url]: https://linkedin.com/in/gerald-moull-41b5265
