@@ -157,7 +157,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Email - [grumpygel@mydocz.com](mailto:grumpygel@mydocz.com)
 
 Project Link: [https://github.com/GrumpyGel/Sudoku_Client](https://github.com/GrumpyGel/Sudoku_Client)
 
@@ -167,8 +167,8 @@ Project Link: [https://github.com/GrumpyGel/Sudoku_Client](https://github.com/Gr
 ## Acknowledgements
 
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-* []()
-* []()
+* [Ajv JSON schema validator](https://ajv.js.org/)
+
 
 
 
