@@ -63,9 +63,6 @@ A Sudoku implementation to run in browsers, Android and iOS
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -93,14 +90,6 @@ A Sudoku implementation to run in browsers, Android and iOS
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
 `github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
-
-
-### Built With
-
-* []()
-* []()
-* []()
-
 
 
 <!-- GETTING STARTED -->
@@ -177,7 +166,7 @@ Project Link: [https://github.com/GrumpyGel/Sudoku_Client](https://github.com/Gr
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * []()
 * []()
 
