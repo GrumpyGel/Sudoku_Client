@@ -1,0 +1,1067 @@
+:root {
+    --top-height: 0px;
+    --main-bg-color: coral;
+    --button_bg: #e0e0e0;
+    --button_bg_hover: #6d0f92;
+    --radius_content: 5px;
+    --radius_container: 10px;
+}
+
+body {
+    margin: 0;
+    font-family: Helvetica;
+    font-size: 18px;
+    background-image: url("images/MainBg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+
+input {
+    border:2px solid #303030;
+    background-color: #ffffff;
+    color: #000000;
+    font-size:18px;
+}
+
+.option_button {
+    display: inline-block;
+    border: 2px solid #000000;
+    border-radius: var(--radius_content);
+    margin: 2px 2px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: var(--button_bg);
+    color: #000000;
+}
+
+.option_button:not(.option_button_no_select):hover {
+    background-color: var(--button_bg_hover);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.option_button_no_select {
+    background-color:#a0a0a0;
+}
+
+.page_header {
+    height: var(--top-height);
+}
+
+.page_header h1 {
+    display: none;
+    height: var(--top-height);
+    font-size: 36px;
+    line-height: var(--top-height);
+    text-shadow: -3px -3px 0 #ffffff, 3px -3px 0 #ffffff, -3px 3px 0 #ffffff, 3px 3px 0 #ffffff;
+    text-align: center;
+    margin: 0;
+}
+
+.page_content {
+    position: relative;
+}
+
+/*
+Classes using flip_area need width set and possible height to get consistent flip 
+
+Usage:
+
+<div class="container show_1">
+  <div class="flip_area area_1">Area 1 content</div>
+  <div class="flip_area area_2">Area 2 content</div>
+  <div class="space"></div>
+  Other Content
+</div>
+
+.container { position: relative; width:100px; }
+.area_1, .area_2, .space { width: 100px; height: 50px; }
+.space { position:relative; z-index:1 }
+
+.show_1 .area_1,
+.show_2 .area_2 {
+	-webkit-transform: scaley(1);
+	transform: scaley(1);
+}
+
+If there is no "Other Content", height can be set on container and space is not required.
+To swap...
+    sb_Body.classList.remove("show_1");
+    sb_Body.classList.add("show_2");
+*/
+
+.flip_area {
+    position:absolute;
+    overflow: hidden;
+	-webkit-transform: scaley(0);
+	transform: scaley(0);
+	-webkit-transition: -webkit-transform 1s;
+	transition: transform 1s;
+    z-index: 2;
+}
+
+.section {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transform: scale(0.2);
+	transform: scale(0.2);
+	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+	transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+}
+
+.section_head {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.section_head .option_button {
+    width: 30px;
+}
+
+.section_title {
+    flex: 1 0 10px;
+    padding: 5px 0;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+}
+
+.section_warning {
+    flex: 0 0 26px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    background-image: url("images/RedDot.gif");
+    background-position: top left;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+}
+
+.show_menu .menu_section,
+.show_scores .scores_section,
+.show_info .info_section,
+.show_board .board_section {
+    visibility: visible;
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);	
+	-webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+	transition: transform 0.4s, opacity 0.4s;
+}
+
+.menu_container {
+    width:311px;
+    background-color: #4B946A;
+    border-radius: var(--radius_container);
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.menu_container h1 {
+    font-size: 30px;
+    text-shadow: -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff;
+    text-align: center;
+    margin: 0;
+}
+
+.menu_item {
+    width: 250px;
+    border: 2px solid #000000;
+    background-color:#FFFFFF;
+    border-radius: var(--radius_content);
+    margin: 20px auto;
+    padding: 0 4px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: var(--button_bg);
+    color: #000000;
+    font-size: 18px;
+}
+
+.menu_item:hover {
+    background-color: var(--button_bg_hover);
+    color: #ffffff;
+}
+
+.menu_item a {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu_group_not_playing,
+.menu_group_playing {
+    width: 311px;
+}
+
+.not_playing .menu_group_not_playing,
+.playing .menu_group_playing {
+	-webkit-transform: scaley(1);
+	transform: scaley(1);
+}
+
+.menu_text {
+    vertical-align: middle;
+}
+
+.menu_warning {
+    display:none;
+    width:26px;
+    padding: 0;
+    margin: 0 0 0 15px;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 26px;
+    text-align: center;
+    vertical-align: middle;
+    background-image: url("images/RedDot.gif");
+    background-position: top left;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+}
+
+
+.scores_container {
+    width:311px;
+    background-color: #4B946A;
+    border-radius: var(--radius_container);
+    padding: 10px;
+    margin: 0 auto;
+    color: #FFFFFF;
+}
+
+#scores_username {
+    font-size: 22px;
+    font-weight: bold;
+    color: gold;
+}
+
+.scores_content {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: inherit;
+    color: inherit;
+}
+
+.scores_level_head {
+    display: block;
+    padding: 5px 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.scores_level_content {
+    padding: 5px;
+    margin-left: 10px;
+    border: 2px solid #000000;
+    border-radius: var(--radius_content);
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.scores_line {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.scores_heading {
+    font-weight:bold;
+}
+
+.scores_level:not(:first-child) .scores_heading {
+    display:flex;
+}
+
+.scores_line:nth-child(2) {
+    padding-top: 5px;
+}
+
+.scores_line .level {
+    display: none;
+    text-align: left;
+}
+
+.scores_line .hints {
+    flex: 0 0 57px;
+    text-align: left;
+}
+
+.scores_line .boards {
+    flex: 0 0 70px;
+    text-align: right;
+}
+
+.scores_line .best {
+    flex: 0 0 67px;
+    text-align: right;
+}
+
+.scores_line .avg {
+    flex: 0 0 92px;
+    text-align: right;
+}
+
+.scores_share {
+    padding-top:10px;
+    height: 50px;
+}
+
+.scores_share_area {
+    width: 320px;
+    height: 50px;
+}
+
+.scores_share_area span {
+    font-weight: bold;
+}
+
+.scores_share_show_notavail .scores_share_notavail,
+.scores_share_show_option .scores_share_option,
+.scores_share_show_set .scores_share_set,
+.scores_share_show_wait .scores_share_wait,
+.scores_share_show_done .scores_share_done {
+    -webkit-transform: scaley(1);
+	transform: scaley(1);
+}
+
+
+.scores_share_option .option_button {
+    width: 180px;
+    margin: 0 auto;
+}
+
+.scores_share_set {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-end;
+}
+
+.scores_share_set .block_1 {
+    flex: 1 0 80px;
+}
+
+.scores_share_set .block_2 {
+    flex: 0 0 80px;
+}
+
+.scores_share_set label {
+    display: block;
+}
+
+.scores_share_set input {
+    width: 220px;
+}
+
+.scores_share_set .option_button {
+    width: 60px;
+    margin-bottom: 0;
+}
+
+.info_container {
+    max-width:700px;
+    background-color: #4B946A;
+    border-radius: var(--radius_container);
+    padding: 0 0 10px 0;
+    border: 0;
+    margin: 0 auto;
+    color: #FFFFFF;
+}
+
+.info_sticky {
+    position: sticky;
+    top: 0;
+    background-color: #4B946A;
+    border-radius: var(--radius_container); var(--radius_container) 0 0;
+    border: 0;
+    padding: 10px 10px 0 10px;
+    margin: 0;
+    color: #FFFFFF;
+    z-index: 10;
+}
+
+.info_contenttop {
+    padding: 0;
+    margin: 0;
+    height: var(--radius_content);
+    border: 2px solid #000000;
+    border-bottom: 0;
+    border-radius: var(--radius_content) var(--radius_content) 0 0;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.info_content {
+    padding: 10px;
+    margin: 0 10px;
+    border: 2px solid #000000;
+    border-top: 0;
+    border-radius: 0 0 var(--radius_content) var(--radius_content);
+    background-color: #FFFFFF;
+    color: #000000;
+
+}
+
+.info_error {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 10px;
+}
+
+.info_error div:nth-child(1) {
+    flex: 0 0 26px;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 26px;
+    text-align: center;
+    vertical-align: middle;
+    background-image: url("images/RedDot.gif");
+    background-position: top left;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+}
+
+.info_error div:nth-child(2) {
+    flex: 1 0 10px;
+    margin-left: 15px;
+}
+
+.info_block {
+    margin: 5px 0;
+}
+
+.info_block .head {
+    position: sticky;
+    top: 58px;
+    padding: 5px;
+    margin: 10px 0;
+    border-radius: var(--radius_content);
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.info_block .head:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+  
+.info_block .open .head:after {
+    content: "\2212";
+}
+  
+.info_block .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+  
+.info_block p {
+    margin: 10px 0 10px 5px;
+}
+  
+.info_block p:first-child {
+    margin: 0 0 10px 5px;
+}
+  
+.info_block p:last-child {
+    margin: 10px 0 0 5px;
+}
+  
+.info_block ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.info_block li {
+    margin: 5px 0;
+}
+
+.setting {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 330px;
+    border: 0;
+    padding: 5px 0 0 0;
+    margin: 0 auto;
+}
+
+.setting .desc {
+    flex: 1 0 10px;
+    padding-top: 8px;
+}
+
+.setting .option {
+    flex: 0 0 39px;
+    padding: 0 10px;
+}
+
+.setting .option div {
+    width:39px;
+    height: 33px;
+    line-height: 33px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    background-position: center center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.setting_on div { background-image: url("images/Tick.jpg"); }
+.setting_off div { background-image: url("images/Cross.jpg"); }
+.setting_sound_on div { background-image: url("images/Sound_On.jpg"); }
+.setting_sound_off div { background-image: url("images/Sound_Off.jpg"); }
+.setting_18 { font-size: 18px; }
+.setting_21 { font-size: 21px; }
+.setting_24 { font-size: 24px; }
+
+.setting .option:hover div,
+.game_fontsize_18 .setting_18 div,
+.game_fontsize_21 .setting_21 div,
+.game_fontsize_24 .setting_24 div,
+.setting_set_on .setting_on div,
+.setting_set_on .setting_sound_on div,
+.setting_set_off .setting_off div,
+.setting_set_off .setting_sound_off div {
+    border: 2px solid #6d0f92;
+}
+
+
+.board_split {
+    display: flex;
+    flex-flow: row wrap;
+    width:331px;
+    border: 0;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.board_divider {
+    display: none;
+    flex: 1 0 1px;
+}
+
+.board_container {
+    flex: 0 0 311px;
+    background-color: #4B946A;
+    border-radius: var(--radius_container) var(--radius_container) 0 0;
+    padding: 10px;
+    margin: 0;
+}
+
+.board {
+    position: relative;
+    width:100%;
+}
+
+.board_row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.square_outer {
+    border: 0px;
+    line-height: 31px;
+    text-align: center;
+  }
+  
+.board_row:nth-child(1) .square_outer ,
+.board_row:nth-child(4) .square_outer ,
+.board_row:nth-child(7) .square_outer {
+    border-top: 2px solid #000000;
+}
+
+.board_row:nth-child(9) .square_outer {
+    border-bottom: 2px solid #000000;
+}
+
+.square_outer:nth-child(1) ,
+.square_outer:nth-child(4) ,
+.square_outer:nth-child(7) {
+    border-left: 2px solid #000000;
+}
+
+.square_outer:nth-child(9) {
+    border-right: 2px solid #000000;
+}
+
+.square {
+    color:#000000;
+    font-weight: bold;
+    border: 1px solid #FFFFFF;
+    background-color: #98aca2;
+    height: 31px;
+    width:31px;
+}
+
+.game_fontsize_21 .square { font-size: 21px; }
+.game_fontsize_24 .square { font-size: 24px; }
+
+.board_row:nth-child(1) .square, .board_row:nth-child(4) .square, .board_row:nth-child(7) .square { border-top: 2px solid #FFFFFF; }
+.board_row:nth-child(3) .square, .board_row:nth-child(6) .square, .board_row:nth-child(9) .square { border-bottom: 2px solid #FFFFFF; }
+.square_outer:nth-child(1) .square, .square_outer:nth-child(4) .square, .square_outer:nth-child(7) .square { border-left: 2px solid #FFFFFF; }
+.square_outer:nth-child(3) .square, .square_outer:nth-child(6) .square, .square_outer:nth-child(9) .square { border-right: 2px solid #FFFFFF; }
+    
+    
+.over_row_a .row_a ,
+.over_row_b .row_b ,
+.over_row_c .row_c ,
+.over_row_d .row_d ,
+.over_row_e .row_e ,
+.over_row_f .row_f ,
+.over_row_g .row_g ,
+.over_row_h .row_h ,
+.over_row_i .row_i ,
+.over_col_1 .col_1 ,
+.over_col_2 .col_2 ,
+.over_col_3 .col_3 ,
+.over_col_4 .col_4 ,
+.over_col_5 .col_5 ,
+.over_col_6 .col_6 ,
+.over_col_7 .col_7 ,
+.over_col_8 .col_8 ,
+.over_col_9 .col_9 ,
+.over_unit_a1 .unit_a1 ,
+.over_unit_a4 .unit_a4 ,
+.over_unit_a7 .unit_a7 ,
+.over_unit_d1 .unit_d1 ,
+.over_unit_d4 .unit_d4 ,
+.over_unit_d7 .unit_d7 ,
+.over_unit_g1 .unit_g1 ,
+.over_unit_g4 .unit_g4 ,
+.over_unit_g7 .unit_g7 {
+    background-color: gold;
+}
+
+.hint_row_a .row_a ,
+.hint_row_b .row_b ,
+.hint_row_c .row_c ,
+.hint_row_d .row_d ,
+.hint_row_e .row_e ,
+.hint_row_f .row_f ,
+.hint_row_g .row_g ,
+.hint_row_h .row_h ,
+.hint_row_i .row_i ,
+.hint_col_1 .col_1 ,
+.hint_col_2 .col_2 ,
+.hint_col_3 .col_3 ,
+.hint_col_4 .col_4 ,
+.hint_col_5 .col_5 ,
+.hint_col_6 .col_6 ,
+.hint_col_7 .col_7 ,
+.hint_col_8 .col_8 ,
+.hint_col_9 .col_9 ,
+.hint_unit_a1 .unit_a1 ,
+.hint_unit_a4 .unit_a4 ,
+.hint_unit_a7 .unit_a7 ,
+.hint_unit_d1 .unit_d1 ,
+.hint_unit_d4 .unit_d4 ,
+.hint_unit_d7 .unit_d7 ,
+.hint_unit_g1 .unit_g1 ,
+.hint_unit_g4 .unit_g4 ,
+.hint_unit_g7 .unit_g7 {
+    background-color: rgb(216, 200, 107);
+}
+
+.hint_square {
+    background-color: rgb(216, 200, 107);
+}
+
+.provided {
+    color:#101010;
+    font-weight: normal;
+}
+
+.board .board_row .selected {
+    background-color: #6d0f92;
+    color: #FFFFFF;
+}
+
+.board .board_row .wrongnumber {
+    background-image: url("images/RedDot.gif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+}
+
+.board .complete_marker {
+    position: absolute;
+    display:none;
+    top: 4px;
+    left: 4px;
+    width: 0px;
+    height: 0px;
+    outline:none;
+    border:2px solid #9ecaed;
+    box-shadow:0 0 10px #9ecaed;
+    background-color: #ffffff;
+    opacity: 0.6;
+}
+
+.show_marker_number .board .marker_number {
+    display: block;
+    width: 31px;
+    animation: dk_MarkerNumber 2s; 
+}
+
+@keyframes dk_MarkerNumber {
+    0% { height:0px; }
+    40% { height: 31px; }
+    60% { height: 31px; }
+    100% {height: 0px; }
+}
+
+
+.show_marker_col .board #d_Marker_Col {
+    display:block;
+    width: 31px;
+    animation: dk_MarkerCol 2s; 
+}
+
+@keyframes dk_MarkerCol {
+    0% { height:0px; }
+    40% { height: 303px; }
+    60% { height: 303px; }
+    100% {height: 0px; }
+}
+
+.show_marker_row .board #d_Marker_Row {
+    display:block;
+    height: 31px;
+    animation: dk_MarkerRow 2s; 
+}
+
+@keyframes dk_MarkerRow {
+    0% { width:0px; }
+    40% { width: 303px; }
+    60% { width: 303px; }
+    100% { width: 0px; }
+}
+
+.show_marker_unit .board #d_Marker_Unit {
+    display:block;
+    width: 97px;
+    animation: dk_MarkerUnit 2s; 
+}
+
+@keyframes dk_MarkerUnit {
+    0% { height:0px; }
+    40% { height: 97px; }
+    60% { height: 97px; }
+    100% {height: 0px; }
+}
+
+
+.options_container {
+    flex: 0 0 311px;
+    background-color: #4B946A;
+    border-radius: 0 0 var(--radius_container) var(--radius_container);
+    padding: 0 10px 10px 10px;
+    margin: 0;
+}
+
+.options_container .options {
+    width: 311px;
+    padding-top: 0;
+}
+
+.options_container .actions {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.options_container .numbers {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.options_container .option_pad {
+    display: block;
+    flex: 1 0 10px;
+}
+
+.options_container .option_button {
+    flex: 0 0 27px;
+}
+
+.options_container .actions .option_button:first-child,
+.options_container .numbers .option_button:first-child {
+        margin-left: 0;
+}
+
+.options_container .actions .option_button:last-child,
+.options_container .numbers .option_button:last-child {
+        margin-right: 0;
+}
+
+.options_container .option_button_wide {
+    flex: 0 0 62px;
+    padding: 0 0px;
+}
+
+.options_container .option_button_wide img {
+    vertical-align: middle;
+    width:15px;
+}
+
+.options_container .option_clock_container {
+    flex: 0 0 58px;
+    padding-left: 4px;
+}
+
+.game_fontsize_21 .options_container .option_button { font-size: 21px; }
+.game_fontsize_24 .options_container .option_button { font-size: 24px; }
+
+#d_Erase {
+    background: #FFFFFF url("images/Trash.gif") no-repeat center/80%;
+}
+
+#d_Erase:hover {
+    background: #6d0f92 url("images/Trash_Hover.gif") no-repeat center/80%;
+}
+
+
+.msg_Area{
+    display: none;
+    flex-flow: row wrap;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid #000000;
+    border-radius: var(--radius_content);
+    background-color: #FFFFFF;
+}
+
+.msg_Title {
+    flex: 0 0 50px;
+}
+
+.msg_Message {
+    flex: 1 0 10px;
+}
+
+
+.options_space {
+    position: relative;
+    width: 311px;
+    height: 76px;
+    z-index: 1;
+}
+
+.options_playing,
+.options_gameover {
+    width: 311px;
+    height: 76px;
+}
+
+
+.playing .options_playing,
+.not_playing .options_gameover {
+	-webkit-transform: scaley(1);
+	transform: scaley(1);
+}
+
+.options_gameover {
+    color: #FFFFFF;
+    padding-top: 0;
+}
+
+.options_gameover_head {
+    float: left;
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.options_gameover_but {
+    float: right;
+    text-align: right;
+    margin: 0;
+}
+
+.options_gameover_but .option_button {
+    width: 105px;
+    margin: 0 auto;
+}
+
+.options_gameover_text {
+    clear:both;
+}
+
+.options_no_wrap {
+    display: inline-block;
+}
+
+ /*
+Portrait centered but no room for heading
+Portrait with room for heading
+*/
+
+@media screen and (min-height:428px) {
+
+    :root {
+        --top-height: calc((100vh - 428px) * 0.5);
+    }
+}
+
+@media screen and (min-height:478px) {
+
+    :root {
+        --top-height: calc(((100vh - 478px) * 0.5) + 50px);
+    }
+    .page_header h1 {
+        display: block;
+    }
+    .menu_container h1 {
+        display: none;
+    }
+}
+
+/*
+Landscape layout.
+Include min-width so if there is any scrolling, hopefully its vertical.
+*/
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:500px) {
+
+    :root {
+        --top-height:0px;
+    }
+
+    .board_split {
+        width: auto;
+        max-width: 500px;
+    }
+    
+    .board_divider {
+        display: block;
+    }
+    
+    .board_container {
+        border-radius: var(--radius_container);
+    }
+
+    .options_container {
+        flex: 0 0 108px;
+        border-radius: var(--radius_container);
+        padding: 10px 9px;
+    }
+    
+    .options_container .options {
+        width: 108px;
+        padding-top: 10px;
+    }
+
+    .options_container .options .actions .option_button,
+    .options_container .options .numbers .option_button {
+            margin: 2px;
+    }
+
+    .options_container .option_pad {
+        display: none;
+    }
+
+    .options_space,
+    .options_playing,
+    .options_gameover {
+        width: 108px;
+        height: 210px;
+    }
+
+    .options_gameover {
+        padding-top: 20px;
+    }
+    
+    .options_gameover_head {
+        float: none;
+        text-align: center;
+    }
+    
+    .options_gameover_but {
+        float: none;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .scores_container {
+        width:400px;
+    }
+    
+    .scores_content {
+        padding: 10px;
+        border: 2px solid #000000;
+        border-radius: var(--radius_content);
+        background-color: #FFFFFF;
+        color: #000000;
+    }
+
+    .scores_level_head {
+        display: none;
+    }
+    
+    .scores_level_content {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+    }
+    
+    .scores_level:not(:first-child) .scores_heading {
+        display:none;
+    }
+
+    .scores_line .level {
+        display: block;
+        flex: 0 0 80px;
+    }
+
+    .scores_share_area {
+        width: 400px;
+    }
+        
+    .scores_share_set input {
+        width: 300px;
+    }
+}
+
+ /*
+Landscape centered but no room for heading
+Landscape with room for heading
+*/
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:500px) and (min-height:331px) {
+
+    :root {
+        --top-height: calc((100vh - 331px) * 0.5);
+    }
+}
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:500px) and (min-height:381px) {
+
+    :root {
+        --top-height: calc(((100vh - 381px) * 0.5) + 50px);
+    }
+    .page_header h1 {
+        display: block;
+    }
+    .menu_container h1 {
+        display: none;
+    }
+}

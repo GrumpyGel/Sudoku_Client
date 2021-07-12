@@ -1,0 +1,348 @@
+<html>
+    <head>
+        <title>Sudoku Board</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="images/favicon_sudoku.png">
+        <link rel="stylesheet" type="text/css" href="Sudoku.css"/>
+        <link rel="stylesheet" type="text/css" href="MyClock.css"/>
+        <script language="javascript" src="MyClock.js" type="text/javascript"></script>
+        <script language="javascript" src="mdzUtils.js" type="text/javascript"></script>
+        <script language="javascript" src="SudokuScores.js" type="text/javascript"></script>
+        <script language="javascript" src="SudokuBoards.js" type="text/javascript"></script>
+        <script language="javascript" src="SudokuGame.js" type="text/javascript"></script>
+        <script language="javascript" src="ajv.min.js" type="text/javascript"></script>
+        <script language="javascript" src="Sudoku.js" type="text/javascript"></script>
+    </head>
+    <body id="body" class="show_menu not_playing" onload="sc_Init();" onhashchange="sc_Routing();">
+        <a name="menu"></a>
+        <a name="board_easy"></a>
+        <a name="board_medium"></a>
+        <a name="scores"></a>
+        <a name="info"></a>
+        <a name="testboards"></a>
+        <audio id="sc_Audio_WinOpen" preload="true"><source src="audio/WinOpen_3.mp3" type="audio/mpeg"/></audio>
+        <audio id="sc_Audio_WinClose" preload="true"><source src="audio/WinClose_3.mp3" type="audio/mpeg"/></audio>
+        <audio id="sc_Audio_Click" preload="true"><source src="audio/Click.wav" type="audio/wav"/></audio>
+        <audio id="sc_Audio_Correct" preload="true"><source src="audio/Correct.wav" type="audio/wav"/></audio>
+        <audio id="sc_Audio_Error" preload="true"><source src="audio/Error.wav" type="audio/wav"/></audio>
+        <audio id="sc_Audio_GameOver" preload="true"><source src="audio/GameOver.mp3" type="audio/mpeg"/></audio>
+
+        <div class="page_header"><h1>Sudoku by MyDocz</h1></div>
+        <div class="page_content">
+
+            <div class="section menu_section" id="menu_section">
+                <div class="menu_container">
+                    <h1>Sudoku by MyDocz</h1>
+                    <div class="menu_group_not_playing flip_area">
+                        <div class="menu_item menu_not_playing"><a href="#board_easy">Play Game - Easy</a></div>
+                        <div class="menu_item menu_not_playing"><a href="#board_medium">Play Game - Harder</a></div>
+                    </div>
+                    <div class="menu_group_playing flip_area">
+                        <div class="menu_item menu_playing"><a href="#board_resume">Resume Game</a></div>
+                        <div class="menu_item menu_playing" onclick="sc_NewGame();">New Game</div>
+                    </div>
+                    <div style="height:130px;"></div>
+                    <div class="menu_item"><a href="#scores">Best Times</a></div>
+                    <div class="menu_item"><a href="#info">Information &amp; Settings<span class="menu_warning" id="sc_InfoWarning">!</span></a></div>
+                </div>
+            </div>
+    
+            <div class="section scores_section" id="scores_section">
+                <div class="scores_container">
+                    <div class="section_head">
+                        <div class="option_button" onclick="sc_GoBack();">&lt;</div>
+                        <div class="section_title">
+                            Best Times
+                            <div id="scores_username"></div>
+                        </div>
+                    </div>
+                    <div class="scores_content" id="scores_content"></div>
+                    <div class="scores_share">
+                        <div class="scores_share_area scores_share_notavail flip_area">
+                            <span>Local storage disabled:</span> Times reset when closed and Sharing not available.
+                        </div>
+                        <div class="scores_share_area scores_share_option flip_area">
+                            <div class="option_button" onclick="sc_ScoresShare();">Share Your Scores</div>
+                        </div>
+                        <div class="scores_share_area scores_share_set flip_area">
+                            <div class="block_1">
+                                <label for="scores_share_username">User Name</label>
+                                <input type="text" name="scores_share_username" id="scores_share_username" value=""/>
+                            </div>
+                            <div class="block_2">
+                                <div class="option_button" onclick="sc_ScoresShareGo();">Share</div>
+                            </div>
+                        </div>
+                        <div class="scores_share_area scores_share_wait flip_area">
+                            Registering <span id="scores_share_wait_username"></span><br/>
+                            <img src="images/Validating.gif"/>
+                        </div>
+                        <div class="scores_share_area scores_share_done flip_area">
+                            To view times, go to <a target="_blank" href="http://www.mydocz.com/default.aspx?Action=SudokuBestTimes">Sudoku Best Times</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section board_section" id="board_section">
+                <div class="board_split">
+                    <div class="board_container">
+                        <div class="board" id="d_Board">
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_a1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_a9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_b1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_b9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_c1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_c9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_d1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_d9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_e1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_e9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_f1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_f9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_g1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_g9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_h1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_h9"></div></div>
+                            </div>
+                            <div class="board_row">
+                                <div class="square_outer"><div class="square" id="d_square_i1"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i2"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i3"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i4"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i5"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i6"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i7"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i8"></div></div>
+                                <div class="square_outer"><div class="square" id="d_square_i9"></div></div>
+                            </div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_0"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_1"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_2"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_3"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_4"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_5"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_6"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_7"></div>
+                            <div class="complete_marker marker_number" id="d_Marker_Number_8"></div>
+                            <div class="complete_marker" id="d_Marker_Col"></div>
+                            <div class="complete_marker" id="d_Marker_Row"></div>
+                            <div class="complete_marker" id="d_Marker_Unit"></div>
+                        </div>
+                    </div>
+                    <div class="board_divider"></div>
+                    <div class="options_Container">
+                        <div class="options_playing flip_area">
+                            <div class="options">
+                                <div class="actions">
+                                    <div class="option_button" onclick="sc_GoBack();">&lt;</div>
+                                    <div class="option_pad"></div>
+                                    <div class="option_button option_button_wide option_button_no_select option_clock_container">
+                                        <div class="my_clock" id="my_Clock"></div>
+                                    </div>
+                                    <div class="option_pad"></div>
+                                    <div class="option_button option_button_wide" onclick="sc_Hint_Click();">Hint!</div>
+                                    <div class="option_button" id="d_Erase" onclick="sc_Number_Click('e');"></div>
+                                </div>
+                            </div>
+                            <div class="options">
+                                <div class="numbers">
+                                    <div class="option_button" id="d_number_1" onclick="sc_Number_Click(1);">1</div>
+                                    <div class="option_button" id="d_number_2" onclick="sc_Number_Click(2);">2</div>
+                                    <div class="option_button" id="d_number_3" onclick="sc_Number_Click(3);">3</div>
+                                    <div class="option_button" id="d_number_4" onclick="sc_Number_Click(4);">4</div>
+                                    <div class="option_button" id="d_number_5" onclick="sc_Number_Click(5);">5</div>
+                                    <div class="option_button" id="d_number_6" onclick="sc_Number_Click(6);">6</div>
+                                    <div class="option_button" id="d_number_7" onclick="sc_Number_Click(7);">7</div>
+                                    <div class="option_button" id="d_number_8" onclick="sc_Number_Click(8);">8</div>
+                                    <div class="option_button" id="d_number_9" onclick="sc_Number_Click(9);">9</div>
+                                </div>
+                            </div>
+                            <div class="msg_Area" id="err_Area">
+                                <div class="msg_Title">Error:</div>
+                                <div class="msg_Message" id="err_Message"></div>
+                            </div>
+                            <div class="msg_Area" id="hint_Area">
+                                <div class="msg_Title">Hint:</div>
+                                <div class="msg_Message" id="hint_Message"></div>
+                            </div>
+                        </div>
+                        <div class="options_gameover flip_area">
+                            <div class="options_gameover_head">Well Done!</div>
+                            <div class="options_gameover_but"><div class="option_button" onclick="sc_GoBack();">Continue</div></div>
+                            <div class="options_gameover_text">Board complete <span id="gameover_time"></span></div>
+                        </div>
+                        <div class="options_space"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section info_section" id="info_section">
+                <div class="info_container">
+                    <div class="info_sticky">
+                        <div class="section_head">
+                            <div class="option_button" onclick="sc_GoBack();">&lt;</div>
+                            <div class="section_title">Information</div>
+                        </div>
+                        <div class="info_contenttop"></div>
+                    </div>
+                    <div class="info_content">
+                        <div class="info_error" id="sc_InfoErr_Storage">
+                            <div>!</div>
+                            <div>Local Storage is disabled, times will not be saved when closing and you will not be able to share scores.</div>
+                        </div>
+                        <div class="info_error" id="sc_InfoErr_Comms">
+                            <div>!</div>
+                            <div>You do not appear to be connected to the internet, scores will not be shared until connected.</div>
+                        </div>
+                        <div class="info_error" id="sc_InfoErr_CommsXML">
+                            <div>!</div>
+                            <div>You do not appear to be connected to the internet, new boards are available but can not be downloaded.</div>
+                        </div>
+                        <div class="info_block">
+                            <div class="head" onclick="sc_InfoToggleDisplay(this);">Settings</div>
+                            <div class="content">
+                                <div class="setting" id="d_info_setting_soundwin">
+                                    <div class="desc">Sounds for Popups</div>
+                                    <div class="option setting_sound_on" id="setting_sound_win_on"><div onclick="sc_InfoSetting('SoundWin', true);"></div></div>
+                                    <div class="option setting_sound_off" id="setting_sound_win_off"><div onclick="sc_InfoSetting('SoundWin', false);"></div></div>
+                                </div>
+                                <div class="setting" id="d_info_setting_soundboard">
+                                    <div class="desc">Sounds for Board</div>
+                                    <div class="option setting_sound_on" id="setting_sound_win_on"><div onclick="sc_InfoSetting('SoundBoard', true);"></div></div>
+                                    <div class="option setting_sound_off" id="setting_sound_win_off"><div onclick="sc_InfoSetting('SoundBoard', false);"></div></div>
+                                </div>
+                                <div class="setting" id="d_info_setting_showerrors">
+                                    <div class="desc">Show Errors</div>
+                                    <div class="option setting_on" id="setting_errors_on"><div onclick="sc_InfoSetting('ShowErrors', true);"></div></div>
+                                    <div class="option setting_off" id="setting_errors_off"><div onclick="sc_InfoSetting('ShowErrors', false);"></div></div>
+                                </div>
+                                <div class="setting" id="d_info_setting_fontsize">
+                                    <div class="desc">Puzzle Font Size</div>
+                                    <div class="option setting_18" id="setting_fontsize_18"><div onclick="sc_InfoSetting('FontSize', 18);">5</div></div>
+                                    <div class="option setting_21" id="setting_fontsize_21"><div onclick="sc_InfoSetting('FontSize', 21);">5</div></div>
+                                    <div class="option setting_24" id="setting_fontsize_24"><div onclick="sc_InfoSetting('FontSize', 24);">5</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info_block">
+                            <div class="head" onclick="sc_InfoToggleDisplay(this);">What is Sudoku?</div>
+                            <div class="content">
+                                <ul>
+                                    <li>Sudoku is a Number placement puzzle performed on a Grid of 9x9 Squares...</li>
+                                    <li>A Number between 1 and 9 must be placed in each Square, such that each Row and each Column contains the Numbers 1 through 9.</li>
+                                    <li>Similarly, the Grid is further divided into 9 Subgrids and each also must contain the numbers 1 through 9.</li>
+                                    <li>The puzzle is partially completed and you must fill the remaining Squares, there will be only 1 solution.</li>
+                                    <li>For more information about Sudoku and its history please see <a target="_blank" href="https://wikipedia.org/wiki/Sudoku">wikipedia.org/wiki/Sudoku</a>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info_block">
+                            <div class="head" onclick="sc_InfoToggleDisplay(this);">Why Was Sudoku by MyDocz Created?</div>
+                            <div class="content">
+                                <p>If you are getting enjoyment from playing Sudoku by MyDocz on the web or as an app on your phone - that's great.</p>
+                                <p>However, Sudoku by MyDocz was created to showcase some of the technical capabilities MyDocz offers to prospective clients or employers.</p>
+                                <p>It has purposefully been created using a broad mixture of tech, for example Json and XML, Java and c# etc, when less mixture would have been more practical.</li>
+                                <p>Practicality though was not the objective, and we hope to show how we can incorporate and use these different technologies well.</p>
+                                <p>For more information about how Sudoku by MyDocz has been built, please see <a target="_blank" href="https://www.mydocz.com/SudukoTech.html">www.mydocz.com/SudukoTech.html</a>.</p>
+                                <p>If you would like to contract development and or support work to MyDocz, please see <a target="_blank" href="https://www.mydocz.com">www.mydocz.com</a>.</p>
+                            </div>
+                        </div>
+                        <div class="info_block">
+                            <div class="head" onclick="sc_InfoToggleDisplay(this);">How To Play Sudoku by MyDocz</div>
+                            <div class="content">
+                                <ul>
+                                    <li>From the menu, click on "Play Game" - choose your difficulty level.</li>
+                                    <li>The Grid will be displayed with options either to the right or below.  Some of the Squares will be completed, the blank ones you need to complete.</li>
+                                    <li>Examine the empty Squares to determine where you believe a Number should go.  Click on that Square, which will highlight it, then click on the Number in the options area that you want to place there.</li>
+                                    <li>If you make a mistake, a red warning will be placed in that Square.  You can click on the Square again and then click on another Number in the options area, or click the Trash icon to remove it.</li>
+                                    <li>If you click on a Square already completed, that and all the other Squares containing the same Number will be highlighted.  This can help you place missing ones of that Number.</li>
+                                    <li>If you are stuck, you can click the "Hint" button in the options area.  This will highlight:
+                                        <ol>
+                                            <li>A Row, Column or Subgrid with only 1 missing Number.</li>
+                                            <li>A combination of Row, Column and Subgrid where the junction of these is not completed, but only 1 Number can be placed there.</li>
+                                            <li>All of 1 particular Number in the grid, and from these another of that Number can be determined.</li>
+                                        </ol>
+                                    </li>
+                                    <li>When all the Grid has been filled, and the Numbers are is the correct Squares, the game is complete.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+</body>
+</html>
