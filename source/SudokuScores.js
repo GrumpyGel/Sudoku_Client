@@ -3,7 +3,7 @@
 Class : SudokuScores
 =======================
 
-Class for managing Scores (Best Times) within the Sudoku by MyDocz game.
+Class for managing Scores (Best Times) within the Sudoku by MyDocz game. 
 Scores are maintained in the Client and transfered to Server with both sides utilising the SudokuScores class.
 The Server uses the data to create users/clients and update the scores database.
 Ther Server will update the Server part of the SudokuScores class with combined scores of the Users's other Clients (currently not operational).
