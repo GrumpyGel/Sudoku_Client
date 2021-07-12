@@ -7,6 +7,7 @@ Coding for Common MyDocz functions.
 
 Functions are defined as static methods on a mdzUtils class as a simple method to stop naming conflicts with other libraries.
 
+
 */
 
 class mdzUtils {
