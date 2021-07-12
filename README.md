@@ -98,27 +98,12 @@ The Sudoku Client is intended as a showcase of technical functionality.  It is n
 The Sudoku Client is deisgned to operate with the Sudoku Server.  This enables players to publish their Best Times for viewing and comparison on the (www.MyDocz.com) website.
 
 <!-- GETTING STARTED -->
-## Getting Started
 
-To get a local copy up and running follow these simple steps.
+## Installation
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Clone the repo
+Clone the repo
    ```sh
    git clone https://github.com/GrumpyGel/Sudoku_Client.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
    ```
 
 
