@@ -157,7 +157,7 @@ Project Link: [https://github.com/GrumpyGel/Sudoku_Client](https://github.com/Gr
 ## Acknowledgements
 
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-* [Ajv JSON schema validator](https://ajv.js.org/)
+* Ajv JSON schema validator [website](https://ajv.js.org/) [github](https://github.com/ajv-validator/ajv)
 
 
 
