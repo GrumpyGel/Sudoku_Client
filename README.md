@@ -85,12 +85,17 @@ A Sudoku implementation to run in browsers, Android and iOS
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+A Sudoku implementation to run in browsers, Android and iOS.
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+The Sudoku Client is coded in HTML, CSS and JavaScript, all included in this repository.  This creates a stand alone functional Sudoku implementation to run in a browser.
 
+Externally to the repository, the files have been included into a Cordova project and successfully exected as an Android app and can also be packaged as an app for running on Apple iOS.
+
+Features from HTML5 and CSS3 are used to provide the responsive design to host the game within different device and providing a rich animated interface with audio. Current JavaScript storing scores locally between sessions and is structured with individual classes (SudokuScores, SudokuBoard, SudokuGame etc) each performing their own logic separated from the interface.
+
+The Sudoku Client is intended as a showcase of technical functionality.  It is not intended to implement the most complex Sudoku solving logic.  As such it only has 2 levels of play - Easy and Medium.  These should though make the experience pleasurable for most casual Sudoku players.
+
+The Sudoku Client is deisgned to operate with the Sudoku Server.  This enables players to publish their Best Times for viewing and comparison on the (www.MyDocz.com) website.
 
 <!-- GETTING STARTED -->
 ## Getting Started
