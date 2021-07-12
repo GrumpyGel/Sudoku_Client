@@ -10,7 +10,7 @@
 
     Usage : let Clock = new MyClock(ContainingElement)
 
-        ContainingElement : id of HTML element to contain clock.
+        ContainingElement : ID of HTML element to contain clock.
 
     Properties:
         TimedOut : Whether the timer timed out.
