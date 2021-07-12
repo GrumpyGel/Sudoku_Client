@@ -11,9 +11,6 @@ Usage : let SudokuGame = new SudokuGame()
 
 Properties:
 
-    Credentials : Credentials for the client of type ss_Credentials.  Name completed by User, credentials completed by server, stored on client and sent back to server as authorisation.
-    Server : Server accumulated scores for other Clients linked to this User of type ss_Region (currently not operational).
-    Local : Client maintained scores for this Client of type ss_Region.
     Layout : Game board layout at start of game.  Is an array of numbers each 1 to 9 or `` for not set.
     LayoutNow : Game board as it currently stands.
     LayoutFin : Game board once finished.
