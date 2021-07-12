@@ -47,7 +47,7 @@ A Sudoku implementation to run in browsers, Android and iOS
     <a href="https://github.com/GrumpyGel/Sudoku_Client"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/GrumpyGel/Sudoku_Client">View Demo</a>
+    <a href="http://www.mydocz.com/Sudoku/Sudoku.html">View Demo</a>
     ·
     <a href="https://github.com/GrumpyGel/Sudoku_Client/issues">Report Bug</a>
     ·
