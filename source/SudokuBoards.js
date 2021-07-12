@@ -27,8 +27,8 @@ Methods:
 
     LoadFromXml(Document) : Loads boards from an XML document in format:
                         <Boards Expire="ExpiryDate">
-                          <Board Level="Easy" Data="123......81"/>
-                          <Board Level="Medium" Data="123......81"/>
+                          <Board Level="Easy" Data="123.....81"/>
+                          <Board Level="Medium" Data="123.....81"/>
                         </boards>
 
     GetBoard(Level[, Index]) : Returns a board, as an array of squares for the specified level.
