@@ -36,7 +36,7 @@ A Sudoku implementation to run in browsers, Android and iOS
 <br />
 <p align="center">
   <a href="https://github.com/GrumpyGel/Sudoku_Client">
-    <img src="images/SudokuScreen_2.png" alt="Logo" width="80" height="80">
+    <img src="source/images/SudokuScreen_2.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">SudokuClient</h3>
