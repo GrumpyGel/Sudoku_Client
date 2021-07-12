@@ -89,7 +89,7 @@ A Sudoku implementation to run in browsers, Android and iOS.
 
 The Sudoku Client is coded in HTML, CSS and JavaScript, all included in this repository.  This creates a stand alone functional Sudoku implementation to run in a browser.
 
-Externally to the repository, the files have been included into a Cordova project and successfully exected as an Android app and can also be packaged as an app for running on Apple iOS.
+Externally to the repository, the files have been included into a Cordova project and successfully executed as an Android app and can also be packaged as an app for running on Apple iOS.
 
 Features from HTML5 and CSS3 are used to provide the responsive design to host the game within different device and providing a rich animated interface with audio. Current JavaScript storing scores locally between sessions and is structured with individual classes (SudokuScores, SudokuBoard, SudokuGame etc) each performing their own logic separated from the interface.
 
