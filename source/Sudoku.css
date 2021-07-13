@@ -88,6 +88,7 @@ Usage:
 	transform: scaley(1);
 }
 
+
 If there is no "Other Content", height can be set on container and space is not required.
 To swap...
     sb_Body.classList.remove("show_1");
