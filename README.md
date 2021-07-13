@@ -40,7 +40,7 @@ A Sudoku implementation to run in browsers, Android and iOS
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#getting-started">Installation &amp; Usage</a></li>
+    <li><a href="#installation--usage">Installation &amp; Usage</a></li>
     <li><a href="#documentation">Documentation</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
