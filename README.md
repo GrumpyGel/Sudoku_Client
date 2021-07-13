@@ -82,7 +82,7 @@ To play Sudoku, open the Sudoku.html file in the sourse directory in your browse
 <!-- DOCUMENTATION -->
 ## Documentation
 
-Each of the Javascript files within the Source directory has embedded documentation.
+Each of the JavaScript files within the source directory has embedded documentation.
 
 
 <!-- LICENSE -->
